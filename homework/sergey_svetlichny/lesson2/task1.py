@@ -1,0 +1,7 @@
+print('input a')
+a = int(input())
+print('input b')
+b = int(input())
+print('a + b = '+str(a+b))
+print('a - b = '+str(a-b))
+print('a x b = '+str(a*b))
