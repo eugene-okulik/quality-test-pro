@@ -1,5 +1,5 @@
 a = int(input('input a '))
 b = int(input('input b '))
-print('a + b = '+str(a + b))
-print('a - b = '+str(a - b))
-print('a x b = '+str(a * b))
+print('a + b = ' + str(a + b))
+print('a - b = ' + str(a - b))
+print('a x b = ' + str(a * b))
