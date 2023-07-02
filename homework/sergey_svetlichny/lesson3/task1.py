@@ -15,7 +15,7 @@ my_dict = {'tuple': ("one", "two", "three", "four", "five"),
 
 print('my_dict:')
 print(my_dict)
-print('')
+print()
 
 # 1
 # Для того, что хранится под ключом ‘tuple’:
@@ -26,26 +26,20 @@ print('tuple1:')
 print(tuple1)
 print('tuple1, last:')
 print(tuple1[-1])
-print('')
+print()
 
 # 2
 # Для того, что хранится под ключом ‘list’:
 # добавьте в конец списка еще один элемент
 # удалите второй элемент списка
 print('task 2:')
-list1 = my_dict.get('list')
-print('list1:')
-print(list1)
-list1.append(6)
-print('list1 with added:')
-print(list1)
-list1.pop(1)
-print('list1 without removed:')
-print(list1)
-my_dict['list'] = list1
-print('list in my_dict:')
+print('list started:')
 print(my_dict.get('list'))
-print('')
+my_dict['list'].append(6)
+my_dict['list'].pop(1)
+print('list updated:')
+print(my_dict.get('list'))
+print()
 
 # 3
 # Для того, что хранится под ключом ‘dict’:
@@ -55,13 +49,13 @@ print('task 3:')
 dict1 = my_dict.get('dict')
 print('dict1:')
 print(dict1)
-dict1['(\'i am a tuple\',)'] = '(\'uno, due, tres\')'
+dict1[('i am a tuple',)] = ('uno, due, tres')
 print('dict1 updated:')
 print(dict1)
 my_dict['dict'] = dict1
 print('dict in my_dict:')
 print(my_dict.get('dict'))
-print('')
+print()
 
 # 4
 # Для того, что хранится под ключом ‘set’:
@@ -76,7 +70,7 @@ print(set1)
 my_dict['set'] = set1
 print('set in my_dict:')
 print(my_dict.get('set'))
-print('')
+print()
 
 # 5
 # В конце выведите на экран весь словарь
