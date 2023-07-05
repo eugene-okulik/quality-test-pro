@@ -7,4 +7,3 @@ while True:
         break
     elif p != k:
         print('Попробуйте снова')
-
