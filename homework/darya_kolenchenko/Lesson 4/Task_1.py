@@ -11,13 +11,4 @@ for word in new_text:
         ing_text += word.replace('.', 'ing.')
     else:
         ing_text += f"{word}ing "
-
 print(ing_text)
-
-
-
-
-
-
-
-
