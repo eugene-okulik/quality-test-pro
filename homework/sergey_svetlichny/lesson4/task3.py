@@ -2,13 +2,13 @@
 # "Fuzz" вместо печати числа, а для чисел кратных 5 печатать "Buzz". Для чисел которые кратны одновременно и 3 и 5
 # надо печатать "FuzzBuzz". Иначе печатать число.
 
-for i in range(1,101):
-    if ((i % 3) == 0):
-        if ((i % 5) == 0):
+for i in range(1, 101):
+    if (i % 3) == 0:
+        if (i % 5) == 0:
             print("FuzzBuzz")
         else:
             print("Fuzz")
-    elif ((i % 5) == 0):
+    elif (i % 5) == 0:
         print("Buzz")
     else:
         print(i)
