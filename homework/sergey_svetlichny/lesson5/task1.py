@@ -9,10 +9,13 @@ b = int(input('Input please second digit '))
 # print("Input please second digit")
 c = a * b
 d = ''
-if c > 20:
-    d = c * 2
-    print(f"{a} x {b} x 2 = ", end="")
-elif c <= 20:
-    d = c * 3
-    print(f"{a} x {b} x 3 = ", end="")
+e = 2
+znak = '>'
+if c <= 20:
+    e = 3
+    znak = '<='
+d = c * e
+
+print(f"{c} {znak} 20, so multiply on {e} ")
+print(f"{a} x {b} x {e} = ", end="")
 print(d)

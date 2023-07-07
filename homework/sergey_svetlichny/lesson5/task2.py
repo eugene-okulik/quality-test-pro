@@ -9,4 +9,5 @@
 words = {'I': 3, 'love': 5, 'Python': 1, '!': 50}
 for x in words:
     for j in range(0, int(words[x])):
-        print(x)
+        print(x, end='')
+    print()
