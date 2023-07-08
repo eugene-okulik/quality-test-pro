@@ -6,16 +6,21 @@
 # print("Hello! Input please first digit")
 a = int(input('Hello! Input please first digit '))
 b = int(input('Input please second digit '))
-# print("Input please second digit")
-c = a * b
+
+
+def multipl(x, y):
+    z = x * y
+    return (z)
+
+
+c = multipl(a, b)
 d = ''
 e = 2
 znak = '>'
 if c <= 20:
     e = 3
     znak = '<='
-d = c * e
-
+d = multipl(c, e)
 print(f"{c} {znak} 20, so multiply on {e} ")
 print(f"{a} x {b} x {e} = ", end="")
 print(d)
