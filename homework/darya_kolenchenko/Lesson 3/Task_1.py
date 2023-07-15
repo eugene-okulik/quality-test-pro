@@ -6,7 +6,7 @@ my_dict = {'tuple': ('A', 'B', 1, 5, 'Secret', 'Shell'),
 print(my_dict['tuple'][-1])
 my_dict['list'].append(10)
 my_dict['list'].pop(3)
-my_dict['dict']['i am a tuple'] = 'value'
+my_dict['dict'][('i am a tuple',)] = 'value for tuple'
 my_dict['dict'].pop('month')
 my_dict['set'].add('July')
 my_dict['set'].pop()
