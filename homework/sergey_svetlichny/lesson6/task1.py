@@ -6,14 +6,11 @@
 # 25000, False - '$25000'
 # 600, True - '$3785
 
-from random import randint
+from random import randint, choice
 
 salary = int(input('Input your salary: '))
-b = randint(0, 1)
-bonus = False
 sumOfBonus = 0
-if b == 1:
-    bonus = True
+bonus = choice((True, False))
 if bonus:
     sumOfBonus = randint(int(salary * 0.05), int(salary * 0.2))  # ограничил диапазон бонуса от 5 до 20%
 print(f"{salary}, {bonus} - ${salary + sumOfBonus} ")
