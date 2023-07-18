@@ -16,7 +16,3 @@ for count, num in enumerate(fib(100001)):
 
 # print("%e" % gen[5], "%e" % gen[200], "%e" % gen[1000], "%e" % gen[100000])
 # бьет ошибку, форматирование не может обработать последнее число
-
-# for count, num in enumerate(gen):
-#     if count == 5:
-#         print(count, num)
