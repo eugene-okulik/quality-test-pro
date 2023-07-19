@@ -32,4 +32,3 @@ for line in lines:
     array = line.rstrip((line[-1])).split(" ")
     new_dict[array[0]] = int(array[1])
 print(new_dict)
-
