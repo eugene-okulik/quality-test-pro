@@ -62,5 +62,3 @@ schoolbook_list = (schoolbook_1, schoolbook_2, schoolbook_3, schoolbook_4, schoo
 for x in schoolbook_list:
     print('Название: ' + x.name, ', Автор: ' + x.author, ', страниц: ' + str(x.pages_qty),
           ', предмет: ' + x.subject, ', класс: ' + str(x.group), x.is_reserved())
-
-
