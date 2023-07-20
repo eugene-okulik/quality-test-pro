@@ -17,7 +17,7 @@ class Book:
         self.is_reserved()
 
     def is_reserved(self):
-        if self.reserved == True:
+        if self.reserved:
             return ', зарезервирована'
         else:
             return ''
