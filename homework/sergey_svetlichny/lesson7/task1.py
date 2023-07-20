@@ -1,43 +1,35 @@
 # 9 july
 import datetime
 
-parsesymbols = [',', '.', '/', '-', ':']
-date1 = ''
-separ = ''
-dategood = False
+parse_symbols = [',', '.', '/', '-', ':']
 
 
-def inputdate():
-    global date1
-    date1 = input("А ну-ка введи-ка какую-нибудь дату: ")
-    return date1
+def input_date():
+    inputted_date = input("А ну-ка введи-ка какую-нибудь дату: ")
+    return inputted_date
 
 
-def parsedate():
-    for symbol in parsesymbols:
-        if date1.__contains__(symbol):
-            global separ
-            separ = symbol
+def parsedate(date_to_parse):
+    for symbol in parse_symbols:
+        if date_to_parse.__contains__(symbol):
+            return date_to_parse, symbol
+    return
 
 
-def checklist():
-    python_date = datetime.datetime.strptime(date1, '%d' + separ + '%m' + separ + '%Y')
+def checklist(date_separator_tuple):
+    date = date_separator_tuple[0]
+    separator = date_separator_tuple[1]
+    python_date = datetime.datetime.strptime(date, '%d' + separator + '%m' + separator + '%Y')
     print('Данная дата в формате питона выглядит так: ')
     print(python_date)
-    global dategood
-    dategood = True
+    return True
 
 
-inputdate()
-try:
-    parsedate()
-    checklist()
-except ValueError:
-    while not dategood:
-        try:
-            print('Ввести дату необходимо в формате: 31-12-2023')
-            inputdate()
-            parsedate()
-            checklist()
-        except ValueError:
-            print("Неправильный формат даты")
+while True:
+    try:
+        if checklist(parsedate(input_date())):
+            break
+    except ValueError:
+        print('Ввести дату необходимо в формате: 31-12-2023')
+    except TypeError:
+        print('Не введен разделитель')
