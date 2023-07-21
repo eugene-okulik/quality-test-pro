@@ -48,21 +48,21 @@
 # print(calc(a,b, wrapper(a,b)))
 
 
-# попытка решения через декоратор:
+# решение через декоратор:
 def find_operator(func):
     def wrapper(a, b):
         if a == b:
             print("Числа равны, поэтому мы их складываем")
-            return "+"
+            func(a, b, '+')
         elif (a < 0) or (b < 0):
             print("Есть отрицательное число, поэтому мы умножаем")
-            return "*"
+            func(a, b, '*')
         elif a > b:
             print("Первое число больше второго, поэтому делаем вычитание")
-            return "-"
+            func(a, b, '-')
         elif b > a:
             print("Второе число меньше первого, поэтому делаем деление")
-            return "/"
+            func(a, b, '/')
 
     return wrapper
 
@@ -79,4 +79,6 @@ def calcul(first, second, operation):
         return first / second
 
 
-print(calcul(5, 3))
+a = int(input('Введите первое число: '))
+b = int(input('Введите второе число: '))
+print(calcul(a, b))
