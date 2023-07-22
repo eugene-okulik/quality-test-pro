@@ -1,11 +1,11 @@
 class Book:
     page_material = 'бумага'
     is_text_present = True
-    name: ' '
-    author: ' '
-    pages_qty: 0
-    isbn: ' '
-    reserved: False
+    name = ''
+    author = ''
+    pages_qty = 0
+    isbn = ''
+    reserved = False
 
     def __init__(self, name, author, pages_qty, reserved):
         self.name = name
@@ -37,9 +37,9 @@ for x in book_list:
 
 
 class Schoolbook(Book):
-    subject: str
-    group: str
-    is_task_present: bool
+    subject = ''
+    group = ''
+    is_task_present = False
 
     def __init__(self, name, author, pages_qty, reserved, subject, group,
                  is_task_present):
