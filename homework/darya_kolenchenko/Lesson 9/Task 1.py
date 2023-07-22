@@ -11,9 +11,7 @@ class Book:
 
     def __str__(self):
         if self.booked:
-            return (
-                f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages}; зарезервирована'
-                    )
+            return f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages}; зарезервирована'
         return f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages};'
 
 
@@ -42,14 +40,10 @@ class SchoolBook(Book):
 
     def __str__(self):
         if self.booked:
-            return (
-                f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages}; предмет: {self.subject};'
-                f' класс: {self.grade}; зарезервирована'
-                    )
-        return (
-                f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages}; предмет: {self.subject};'
-                f' класс: {self.grade}'
-                )
+            return (f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages}; '
+                    f'предмет: {self.subject}; класс: {self.grade}; зарезервирована')
+        return (f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages}; предмет: {self.subject};'
+                f' класс: {self.grade}')
 
 
 book_6 = SchoolBook(title='Логика', author='Чулпанов', num_pages=231, isbn=12447827, subject='Математика',
