@@ -11,8 +11,9 @@ class Book:
 
     def __str__(self):
         if self.booked:
-            return f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages};' \
-                   f' зарезервирована'
+            return (
+                f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages}; зарезервирована'
+                    )
         return f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages};'
 
 
@@ -35,16 +36,20 @@ class SchoolBook(Book):
     tasks = True
 
     def __init__(self, title, author, num_pages, isbn, subject, grade, booked):
-        super().__init__(self, title, author, num_pages, isbn, booked)
+        super().__init__(title, author, num_pages, isbn, booked)
         self.subject = subject
         self.grade = grade
 
     def __str__(self):
         if self.booked:
-            return f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages};\
-                    предмет: {self.subject}; класс: {self.grade}; зарезервирована'
-        return f'Название: {self.title}; Автор: {self.author}; \
-                   страниц: {self.num_pages}; предмет: {self.subject}; класс: {self.grade}'
+            return (
+                f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages}; предмет: {self.subject};'
+                f' класс: {self.grade}; зарезервирована'
+                    )
+        return (
+                f'Название: {self.title}; Автор: {self.author}; страниц: {self.num_pages}; предмет: {self.subject};'
+                f' класс: {self.grade}'
+                )
 
 
 book_6 = SchoolBook(title='Логика', author='Чулпанов', num_pages=231, isbn=12447827, subject='Математика',
@@ -52,7 +57,7 @@ book_6 = SchoolBook(title='Логика', author='Чулпанов', num_pages=2
 book_7 = SchoolBook(title='Биология', author='Лисов', num_pages=331, isbn=67059000, subject='Биология',
                     grade=6, booked=False)
 book_8 = SchoolBook(title='Химия', author='Шиманович', num_pages=176, isbn=97898500, subject='Химия',
-                    grade=7, booked=False, )
+                    grade=7, booked=False)
 
 book_8.booked = True
 
