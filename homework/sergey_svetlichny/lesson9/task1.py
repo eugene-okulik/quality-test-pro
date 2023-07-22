@@ -1,10 +1,10 @@
 class Book:
     page_material = 'бумага'
     is_text_present = True
-    name: ''
-    author: ''
+    name: ' '
+    author: ' '
     pages_qty: 0
-    isbn: ''
+    isbn: ' '
     reserved: False
 
     def __init__(self, name, author, pages_qty, reserved):
@@ -33,7 +33,7 @@ book_4.reserved = True
 book_list = (book_1, book_2, book_3, book_4, book_5)
 for x in book_list:
     print(f'Название: {x.name}, Автор: {x.author}, страниц: {str(x.pages_qty)}'
-          f', материал: {x.page_material} {x.is_reserved()}')
+          f', материал: {x.page_material}{x.is_reserved()}')
 
 
 class Schoolbook(Book):
@@ -59,4 +59,4 @@ print()
 schoolbook_list = (schoolbook_1, schoolbook_2, schoolbook_3, schoolbook_4, schoolbook_5)
 for x in schoolbook_list:
     print(f'Название: {x.name}, Автор: {x.author}, страниц: {str(x.pages_qty)}'
-          f', предмет: {x.subject}, класс: {str(x.group)} {x.is_reserved()}')
+          f', предмет: {x.subject}, класс: {str(x.group)}{x.is_reserved()}')
