@@ -24,11 +24,42 @@ PRICE_LIST = '''тетрадь 50р
 пенал 300р
 рюкзак 500р'''
 
-lines = PRICE_LIST.splitlines()
-new_dict = {}
-for line in lines:
-    # str = line.rstrip((line[-1]))
-    # array = str.split(" ")
-    array = line.rstrip((line[-1])).split(" ")
-    new_dict[array[0]] = int(array[1])
+
+# print(PRICE_LIST.splitlines()[0].split()[0])
+# print(PRICE_LIST.splitlines()[0].split()[1])
+# print(PRICE_LIST.splitlines()[0].rstrip((PRICE_LIST.splitlines()[0][-1])).split()[1])
+
+# price_list_2 = PRICE_LIST.replace('0р', '0')
+
+# print(PRICE_LIST.splitlines()[0].split()[1::2])  # list
+# print(PRICE_LIST.splitlines()[0].split()[1::2].pop(0))  # element of list
+# print(PRICE_LIST.splitlines()[0].split()[1::2].pop(0).rstrip(PRICE_LIST.splitlines()[0].split()[1::2].pop(0)[-1]))
+
+
+# new_dict = {k: v for k, v in zip(PRICE_LIST.splitlines()[1].split()[0], PRICE_LIST.splitlines()[1].split()[1] )}
+# new_dict = {k: v for k, v in zip(PRICE_LIST.split()[::2], PRICE_LIST.split()[1::2])}  # 50p - выводит список но с р.
+# как сделать этот вывод без р?
+
+# new_dict = {k: v for k, v in zip(PRICE_LIST.split()[::2], PRICE_LIST.split()[1::2].pop(0))}  # 5-разбивает 50р посимв.
+# new_dict = {k: v for k, v in zip(PRICE_LIST.split()[::2], PRICE_LIST.split()[1::2][1])}  # берется цена второй строки
+
+new_dict = {k: v for k, v in zip(PRICE_LIST.split()[::2], list(map(lambda x: int(x.rstrip(x[-1])),
+                                                                   PRICE_LIST.split()[1::2])))}
+
+# https://webdevblog.ru/kak-perebrat-slovar-v-python/
+# https://medium.com/nerd-for-tech/python-substrings-everything-you-need-to-know-4cca526c07eb
+# https://skillbox.ru/media/code/kak-udalit-element-iz-spiska-v-python/
+# https://habr.com/ru/companies/piter/articles/674234/
+
+# things = PRICE_LIST.split()[::2]
+# prices = PRICE_LIST.split()[1::2]
+
+# fixed_prices = list(map(lambda x: int(x.rstrip(x[-1])), prices))
+# fixed_prices = list(map(lambda x: int(x.rstrip(x[-1])), PRICE_LIST.split()[1::2]))
+# print(PRICE_LIST.splitlines()[0].rstrip((PRICE_LIST.splitlines()[0][-1])).split()[1])
+# str = line.rstrip((line[-1]))
+
+# print(things)
+# print(fixed_prices)
+
 print(new_dict)
