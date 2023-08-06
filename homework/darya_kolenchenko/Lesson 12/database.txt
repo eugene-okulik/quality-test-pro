@@ -1,0 +1,95 @@
+insert into students (name, second_name, group_id) values ('Harry', 'Potter')
+insert into `groups` (title, start_date, end_date) values ('HP', 'Sept 15', 'Jan 31')
+update students set group_id = 6 where id = 7
+
+insert into books (title, taken_by_student_id) values ('Potion making', 7)
+
+insert into books (title, taken_by_student_id) values ('Charms', 7)
+
+insert into books (title, taken_by_student_id) values ('Herbology', 7)
+
+insert into books (title, taken_by_student_id) values ('History of magic', 7)
+
+insert INTO subjets (title) value ('Botany')
+
+insert INTO subjets (title) value ('Potions')
+
+insert INTO subjets (title) value ('Charms')
+
+insert INTO subjets (title) value ('History')
+
+insert into lessons (title, subject_id) value ('Into into Botany', 1)
+
+insert into lessons (title, subject_id) value ('How to collect herbs', 1)
+
+insert into lessons (title, subject_id) value ('Basics of potions', 2)
+
+insert into lessons (title, subject_id) value ('potion of truth', 2)
+
+insert into lessons (title, subject_id) value ('Leviosa', 3)
+
+insert into lessons (title, subject_id) value ('Avada kedavra', 3)
+
+insert into lessons (title, subject_id) value ('Ancient history', 4)
+
+insert into lessons (title, subject_id) value ('Medieval', 4)
+
+insert into marks (value, lesson_id) value (20, 1)
+
+insert into marks (value, lesson_id) value (8, 1)
+
+insert into marks (value, lesson_id) value (1, 2)
+
+insert into marks (value, lesson_id) value (2, 2)
+
+insert into marks (value, lesson_id) value (10, 3)
+
+insert into marks (value, lesson_id) value (10, 3)
+
+insert into marks (value, lesson_id) value (6, 4)
+
+insert into marks (value, lesson_id) value (7, 4)
+
+update marks set student_id=7 where id=1
+
+update marks set student_id=7 where id=2
+
+update marks set student_id=7 where id=3
+
+update marks set student_id=7 where id=4
+
+update marks set student_id=7 where id=5
+
+update marks set student_id=7 where id=6
+
+update marks set student_id=7 where id=7
+
+update marks set student_id=7 where id=8
+
+update marks set value=5 where id=1
+
+select * from marks where student_id=7
+
+select * from books where taken_by_student_id = 7
+
+update marks set lesson_id=2 where id=2
+
+update marks set lesson_id=3 where id=3
+
+update marks set lesson_id=4 where id=4
+
+update marks set lesson_id=5 where id=5
+
+update marks set lesson_id=6 where id=6
+
+update marks set lesson_id=7 where id=7
+
+update marks set lesson_id=8 where id=8
+
+select marks.value, subjets.title from marks
+join lessons
+on marks.lesson_id=lessons.id
+join subjets
+on lessons.subject_id = subjets.id
+where marks.student_id = 7
+
