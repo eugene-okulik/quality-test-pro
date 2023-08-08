@@ -25,6 +25,12 @@ class Flower:
     # def __add__(self, obj):
     #     return self.price, obj.price
 
+    def __gt__(self, obj):
+        return self.price > obj.price
+
+    def __ge__(self, obj):
+        return self.price >= obj.price
+
 
 class Rose(Flower):
 
@@ -47,13 +53,17 @@ class Astra(Flower):
 
 class Bouquet:
 
-    # def __init__(self, name, freshness, color, length, lifetimedays, price, flowers):
+    # def __init__(self, name, freshness, color, length, life_time_days, price, flowers):
     def __init__(self, name, flowers):
         self.flowers = flowers
         self.name = name
 
     def __str__(self):
-        return f', цена =  руб'
+        print('Выводим букет: ')
+        flws = ''
+        for flw in self.flowers:
+            flws += f'{flw.name}, цена = {flw.price} руб \n'
+        return flws
 
     def __livetime__(self):
         lt = 0
@@ -65,7 +75,7 @@ class Bouquet:
         return avglt
 
     def __search__(self, nam):
-        print(f'ищем в букете название \'{nam}\' , результаты:')
+        print(f'Ищем в букете название \'{nam}\' , результаты:')
         flws = []
         for flower in self.flowers:
             if flower.name.__contains__(nam):
@@ -79,20 +89,9 @@ class Bouquet:
         print('Общая стоимость букета = ', end='')
         return summ
 
-    def __gt__(self, obj):
-        return self.price > obj.price
-
-    def __ge__(self, obj):
-        return self.price >= obj.price
-
-    # def __lt__(self, obj):
-    #     return self.price < obj.price
-    #
-    # def __le__(self, obj):
-    #     return self.price <= obj.price
     def __sortir__(self):
-        # max(self.flowers[0])
-        print(sorted(self.flowers), self.flowers.flower.price)
+        print(sorted(self.flowers))
+        # print(sorted(self.flowers), key=self.flowers.flower.price)
 
 
 flower_1 = Rose('Красная роза', 'fresh', 'red', '50cm', 7, 3, '0.5cm')
@@ -113,5 +112,7 @@ print(bouquet1.__cost__())
 print(bouquet1.__livetime__())
 print(bouquet1.__search__('роза'))
 
-print(flower_1 < flower_5)  # why there is an error?
-print(bouquet1.__sortir__())
+print(flower_1)
+print(bouquet1)
+print(bouquet1.__sortir__())  # почему выводятся экземпляры объектов <__main__.Astra object at 0x0000020511BEAB90>,..
+# ведь __str__ метод реализован
