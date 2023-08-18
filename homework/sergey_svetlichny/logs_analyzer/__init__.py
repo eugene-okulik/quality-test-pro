@@ -163,7 +163,6 @@ if args.date is not None:
         if check_res[1] == 'date_ok':
             # print('date_ok')
             for k, v in sorted(my_dict.items()):
-
                 if args.text is not None:
                     if (k.__format__('%Y-%m-%d %H:%M:%S') == check_res[0].__format__('%Y-%m-%d %H:%M:%S')
                             and v.lower().__contains__(args.text)):
