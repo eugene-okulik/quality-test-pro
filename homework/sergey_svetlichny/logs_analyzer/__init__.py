@@ -117,18 +117,7 @@ def file_open(fil):
             else:
                 if args.full:
                     my_str += line
-                    # print(counter)
-        # countt += countr
         my_dict.pop('', )
-        # print('Total lines:', counter)
-        # print('Date lines:', date_lines)
-        # print('Total dates:', len(date_lines))
-        # print('Actual dates in Dict:', len(my_dict))
-        # for k in sorted(my_dict):
-        #     # for k in my_dict:
-        #     #     print(k)
-        #     time.sleep(0)
-    # print('closing file')
     file.close()
 
 
@@ -210,10 +199,6 @@ if args.date is not None:
                 for k, v in sorted(my_dict.items()):
                     if check_res[0] < k < check_res[2] and v.lower().__contains__(args.text):
                         print(k, v)
-                        # print('is between:')
-                        # print(check_res[0])
-                        # print('and:')
-                        # print(check_res[2])
             elif args.text is None:
                 for k, v in sorted(my_dict.items()):
                     if check_res[0] < k < check_res[2]:
@@ -238,23 +223,13 @@ if args.text is not None and args.date is None:
         for line in lines:
             if line.lower().__contains__(args.text):
                 l2 = find_all_indexes(line.lower(), args.text)
-                # print(l2)
-                for l in l2:
+                for lin in l2:
                     counter += 1
-                    # print(counter)
-                    # print('index = ')
-                    ind = l  # ine.index(args.text)
+                    ind = lin  # ine.index(args.text)
                     ind0 = ind - 150
                     ind1 = ind + 150
                     if ind0 < 0:
                         ind0 = 0
-                    # print(line[-50:210])
-                    # print(line.index(args.text))
                     print(k, line[ind0:ind1])
                     time.sleep(1)
-                    # print(k, line)
 
-# print('Total lines:', counter)
-# print('Date lines:', date_lines)
-# print('Total dates:', len(date_lines))
-# print('Actual dates in Dict:', len(my_dict))
