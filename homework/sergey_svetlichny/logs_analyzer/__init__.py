@@ -88,35 +88,35 @@ def file_open(fil):
     with open(fil, "r", encoding="utf-8") as file:
         previous_date = ''
         my_str = ''
-        # counter = 0
+        my_counter = 0
         global date_lines
         # date_lines = []
         # lines_with_date = []
-        for line in file:
-            # counter += 1
+        for my_line in file:
+            my_counter += 1
             time.sleep(0)
-            list_of_words = line.split()
+            list_of_words = my_line.split()
             first_word = list_of_words[0]
             if len(first_word) == 10 and first_word.__contains__('-'):
-                date_lines.append(counter)
+                date_lines.append(my_counter)
                 # print(line[:23])
-                python_date2 = datetime.datetime.strptime(line[:23], '%Y-%m-%d %H:%M:%S.%f')
+                python_date2 = datetime.datetime.strptime(my_line[:23], '%Y-%m-%d %H:%M:%S.%f')
                 # print(python_date2)
                 # print(line[24:150].rstrip())
                 if args.full:
                     my_dict.update({previous_date: my_str[47:]})
                     # my_dict.update({previous_date: my_str})
-                    my_str = line.rstrip()
-                    my_dict[python_date2] = line[47:].rstrip()
+                    my_str = my_line.rstrip()
+                    my_dict[python_date2] = my_line[47:].rstrip()
                 else:
                     my_dict.update({previous_date: my_str[47:197]})
-                    my_str = line[:300].rstrip()
-                    my_dict[python_date2] = line[47:300].rstrip()
+                    my_str = my_line[:300].rstrip()
+                    my_dict[python_date2] = my_line[47:300].rstrip()
                 # my_dict[line[:23]] = line[47:197].rstrip()
                 previous_date = python_date2
             else:
                 if args.full:
-                    my_str += line
+                    my_str += my_line
         my_dict.pop('', )
     file.close()
 
@@ -232,4 +232,3 @@ if args.text is not None and args.date is None:
                         ind0 = 0
                     print(k, line[ind0:ind1])
                     time.sleep(1)
-
