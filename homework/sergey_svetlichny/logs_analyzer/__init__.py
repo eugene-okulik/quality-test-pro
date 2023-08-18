@@ -13,7 +13,7 @@ import os
 import time
 from os import walk
 
-from pack.check_date import checklist
+# from pack.check_date import checklist
 
 my_dict = {}
 check_res = []
@@ -130,11 +130,6 @@ def file_open(fil):
         #     time.sleep(0)
     # print('closing file')
     file.close()
-
-
-# my_dict
-
-# https://github.com/eugene-okulik/quality-test-pro/tree/main/homework/eugene_okulik/data/logs
 
 
 if isDirectory:
@@ -258,8 +253,6 @@ if args.text is not None and args.date is None:
                     print(k, line[ind0:ind1])
                     time.sleep(1)
                     # print(k, line)
-
-
 
 # print('Total lines:', counter)
 # print('Date lines:', date_lines)
