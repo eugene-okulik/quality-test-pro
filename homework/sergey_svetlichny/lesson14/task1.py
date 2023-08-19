@@ -66,6 +66,7 @@ def link_get_text():
     response = requests.get('https://gotiny.cc/api/snh35s')
     print(response.text)
 
+
 def link_get_json():
     response = requests.get('https://gotiny.cc/api/snh35s?format=json').json()
     print(response)
