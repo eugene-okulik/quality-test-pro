@@ -3,6 +3,7 @@ import config
 
 app_url = config.app_url
 
+
 @pytest.fixture()
 def one_test():
     print('Before test')
@@ -15,6 +16,7 @@ def all_tests():
     print('Start testing')
     yield
     print('Testing completed')
+
 
 @pytest.fixture()
 def base_url():
