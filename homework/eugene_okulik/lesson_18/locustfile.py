@@ -24,7 +24,7 @@ class MemesUser(HttpUser):
     def get_one_meme(self):
         self.client.get(
             # f'/meme/{randrange(1, 5)}',
-            f'/meme/1',
+            '/meme/1',
             headers={'Authorization': self.token}
         )
 
