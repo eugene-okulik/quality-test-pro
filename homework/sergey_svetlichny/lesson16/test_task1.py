@@ -26,6 +26,7 @@ def post_codes(url, base_url):
     # print('https://gotiny.cc/api/' + post_code)
     # assert response.status_code == 200
 
+
 @allure.feature('Simple')
 @allure.story('Posting')
 @allure.title('Get all posts')
@@ -72,6 +73,7 @@ def test_create_post_fallb(one_test, base_url):
     ).json()
     assert response[0]['long'] == 'https://amazon.com/very-long-url'
 
+
 @allure.feature('Important')
 @allure.story('Getting url')
 @pytest.mark.parametrize('url', ['https://okulik.by/kabinet/group?groupId=2',
@@ -81,6 +83,7 @@ def test_link_get_text(url, base_url):
     p_cod = post_codes(url, base_url)
     response = requests.get(f'{base_url}/{p_cod}')
     assert response.text == url
+
 
 @allure.feature('Hard')
 @allure.story('Getting posts')
