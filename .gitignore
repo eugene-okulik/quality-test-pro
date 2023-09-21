@@ -4,3 +4,8 @@ venv
 .pytest_cache
 .venv
 __pycache__
+config.py
+.env
+allure-results
+allure-repoport
+allure-report
