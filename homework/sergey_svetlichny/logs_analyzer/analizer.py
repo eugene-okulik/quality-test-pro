@@ -44,7 +44,7 @@ if not isFile:
     isDirectory = os.path.isdir(fpath)
     # print('The path is a directory:', isDirectory)
     # if not isDirectory:
-        # print('Not a File and not a Dir')
+    # print('Not a File and not a Dir')
 
 date_lines = []
 
@@ -78,16 +78,16 @@ def check_date_length(dat: str):
 
     if len(dat) == 11:
         if dat.endswith('+'):
-            dat = dat[:10]+'-00-00-00'
+            dat = dat[:10] + '-00-00-00'
             return [check_inputted_date(dat), 'more']
             # return [dat, 'more']
         elif dat.endswith('-'):
-            dat = dat[:10]+'-00-00-00'
+            dat = dat[:10] + '-00-00-00'
             return [check_inputted_date(dat), 'less']
             # return [dat, 'less']
     if len(dat) == 10:
-        dat1 = dat+'-00-00-00'
-        dat2 = dat+'-23-59-59'
+        dat1 = dat + '-00-00-00'
+        dat2 = dat + '-23-59-59'
         return [check_inputted_date(dat1), 'range_d', check_inputted_date(dat2)]
         # return [dat, 'date_ok']
 
@@ -113,7 +113,7 @@ def file_open(fil):
             list_of_words = my_line.split()
             first_word = list_of_words[0]
             if len(first_word) == 10 and '-' in first_word:
-            # if len(first_word) == 10 and first_word.__contains__('-'):
+                # if len(first_word) == 10 and first_word.__contains__('-'):
                 date_lines.append(my_counter)
                 # print(line[:23])
                 python_date2 = datetime.datetime.strptime(my_line[:23], '%Y-%m-%d %H:%M:%S.%f')
@@ -183,7 +183,7 @@ if args.date is not None:
                 if args.text is not None:
                     if (k.__format__('%Y-%m-%d %H:%M:%S') == inputted_date_analizer[0].__format__('%Y-%m-%d %H:%M:%S')
                             and args.text in v.lower()):
-                            # and v.lower().__contains__(args.text)):
+                        # and v.lower().__contains__(args.text)):
                         print(k, v)
                 elif args.text is None:
                     if k.__format__('%Y-%m-%d %H:%M:%S') == inputted_date_analizer[0].__format__('%Y-%m-%d %H:%M:%S'):
@@ -193,7 +193,7 @@ if args.date is not None:
             for k, v in sorted(parsed_data.items()):
                 if args.text is not None:
                     if k > inputted_date_analizer[0] and args.text in v.lower():
-                    # if k > check_res[0] and v.lower().__contains__(args.text):
+                        # if k > check_res[0] and v.lower().__contains__(args.text):
                         print(k, v)
                 elif args.text is None:
                     if k > inputted_date_analizer[0]:
@@ -205,7 +205,7 @@ if args.date is not None:
             for k, v in sorted(parsed_data.items()):
                 if args.text is not None:
                     if k < inputted_date_analizer[0] and args.text in v.lower():
-                    # if k < check_res[0] and v.lower().__contains__(args.text):
+                        # if k < check_res[0] and v.lower().__contains__(args.text):
                         print(k, v)
                 elif args.text is None:
                     if k < inputted_date_analizer[0]:
