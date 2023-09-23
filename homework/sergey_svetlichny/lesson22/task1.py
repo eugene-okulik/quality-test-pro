@@ -31,6 +31,8 @@ from selenium.webdriver import Keys, ActionChains
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 chrome_options = Options()
 # chrome_options.add_experimental_option('detach', True)
@@ -47,7 +49,7 @@ def test_put_in_cart():
     ActionChains(driver).key_down(Keys.CONTROL).click(link).key_up(Keys.CONTROL).perform()
     driver.switch_to.window(driver.window_handles[1])
     driver.find_element(By.LINK_TEXT, 'Add to cart').click()
-    time.sleep(5)
+    WebDriverWait(driver, 5).until(EC.alert_is_present(), 'Timed out waiting for simple alert to appear')
     alert = Alert(driver)
     print(alert.text)
     alert.accept()
@@ -69,10 +71,9 @@ def test_opening_demoqa():
 def test_wait_for_input_enabling():
     driver.get('https://the-internet.herokuapp.com/dynamic_controls')
     driver.find_element(By.XPATH, "//button[contains(text(),'Enable')]").click()
-    driver.implicitly_wait(10)
-    driver.find_element(By.XPATH, "//button[contains(text(),'Disable')]")
-    driver.find_element(By.XPATH, "//input[@type='text']").send_keys('Inputted text')
-    time.sleep(3)
+    text_input = driver.find_element(By.XPATH, "//input[@type='text']")
+    WebDriverWait(driver, 5).until(EC.element_to_be_clickable(text_input), 'Timed out waiting for text_input enabled')
+    text_input.send_keys('Inputted text')
 
 
 def test_open_menu_with_action_chains():
@@ -85,4 +86,3 @@ def test_open_menu_with_action_chains():
     actions.move_to_element(sub_sub_list)
     actions.click(sub_sub_item2)
     actions.perform()
-    time.sleep(1)
