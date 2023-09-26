@@ -36,10 +36,6 @@ index_of_string_to_find = []
 # def parse_input():
 
 
-
-
-
-
 date_lines = []
 parse_symbols = [',', '.', '/', '-', ':']
 type_of_date = []  # not_date, good_d, less, more, range_d
@@ -91,6 +87,7 @@ def check_inputted_date(dat):
                                              f'%d{separator}%m{separator}%Y{separator}%H{separator}%M{separator}%S')
     return python_date
 
+
 # data_to_dict
 def file_open(fil):
     with open(fil, "r", encoding="utf-8") as file:
@@ -130,8 +127,6 @@ def file_open(fil):
     # file.close()
 
 
-
-
 def find_all_indexes(input_str, search_str):
     length = len(input_str)
     index = 0
@@ -145,8 +140,9 @@ def find_all_indexes(input_str, search_str):
         index = i + 1
     return l1
 
+
 def exclude_unwanted():
-# case 1 (UNWANTED)
+    # case 1 (UNWANTED)
 
     # print('case 1')
     for k, v in sorted(parsed_data.items()):
@@ -154,9 +150,10 @@ def exclude_unwanted():
         if args.unwanted.lower in v.lower():
             parsed_data.pop(k)
 
+
 def find_by_date():
-# case 2 (DATE WITHOUT TEXT)
-# if args.date is not None and args.text is None:
+    # case 2 (DATE WITHOUT TEXT)
+    # if args.date is not None and args.text is None:
 
     # print('case 2')
     try:
@@ -213,17 +210,19 @@ def find_by_date():
     except TypeError:
         # print('Не введен разделитель, разделитель должен быть один следующих: . , / - : ')
         print('Ввести дату необходимо cо временем, в формате: 31-12-2023-23-59-59')
+
+
 # case 3 (WITHOUT DATE, WITHOUT TEXT)
 
 def show_res_without_tex_without_date():
-
     # print('case 3')
     for k, v in sorted(parsed_data.items()):
         print(k, v)
 
+
 def find_by_text():
-# case 4 (WITH TEXT WITHOUT DATE)
-   # print('case 4')
+    # case 4 (WITH TEXT WITHOUT DATE)
+    # print('case 4')
     for k, v in sorted(parsed_data.items()):
         lines = v.splitlines()
         counter = 0
@@ -275,7 +274,6 @@ if not isFile:
     # if not isDirectory:
     # print('Not a File and not a Dir')
 
-
 if isDirectory:
     if args.text is not None:
         args.full = True
@@ -288,7 +286,6 @@ if isDirectory:
 
 if isFile:
     file_open(args.file)
-
 
 if args.date is not None:
     find_by_date()
