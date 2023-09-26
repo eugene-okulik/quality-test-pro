@@ -7,6 +7,15 @@
 # 6. реализовать поиск по тексту
 # 7. настроить удобный вывод результатов
 
+# здесь могли бы быть функции: data_to_dict, find_by_date, find_by_text, exclude_unwanted, print_result.
+# Я не очень разобрался в коде и не смог понять какой общий алгоритм действий. Правильным мне видится такой:
+#
+# Превращаем содержимое одного или всех файлов в словарь
+# Если запрошен поиск по дате, оставляем в словаре только то, что соответствует поиску
+# Если запрошен поиск по тексту, оставляем в словаре только то, что соответствует поиску
+# Если указано unwanted, выбрасываем из словаря все, что имеет указанное слово
+# Распечатываем весь словарь согласно тому, что просили (full или не full)
+
 import argparse
 import datetime
 import os
@@ -16,38 +25,22 @@ from os import walk
 # from pack.check_date import checklist
 
 parsed_data = {}
-inputted_date_analizer = []
+inputted_date_analyzer = []
 index_of_string_to_find = []
 # counter = 0
 # date_lines = []
 # lines_with_date = []
+# parser = argparse.ArgumentParser()
+# args = parser.parse_args()
 
-isDirectory = False
-parser = argparse.ArgumentParser()
-parser.add_argument("file", help="Path to file or directory with logs")
-parser.add_argument("-d", "--date", help="Date for search, format: 31-12-2022-23-59-59, "
-                                         "31-12-2022-23-59-59- - to find earlier that this date, "
-                                         "31-12-2022-23-59-59+ - to find later that this date, "
-                                         "30-12-2022-23-59-59-31-12-2022-23-59-59 - to find between these dates")
-parser.add_argument("-t", "--text", help="Text for search")
-parser.add_argument("-n", "--unwanted", help="Text for except in results")
-parser.add_argument("--full", help="Full text of logs", action="store_true")
-args = parser.parse_args()
+# def parse_input():
 
-print(args)
-print(args.file, args.date, args.text, args.unwanted, args.full)
 
-fpath = args.file
-isFile = os.path.isfile(args.file)
-# print('The file present at the path is a regular file:', isFile)
-if not isFile:
-    isDirectory = os.path.isdir(fpath)
-    # print('The path is a directory:', isDirectory)
-    # if not isDirectory:
-    # print('Not a File and not a Dir')
+
+
+
 
 date_lines = []
-
 parse_symbols = [',', '.', '/', '-', ':']
 type_of_date = []  # not_date, good_d, less, more, range_d
 
@@ -98,7 +91,7 @@ def check_inputted_date(dat):
                                              f'%d{separator}%m{separator}%Y{separator}%H{separator}%M{separator}%S')
     return python_date
 
-
+# data_to_dict
 def file_open(fil):
     with open(fil, "r", encoding="utf-8") as file:
         previous_date = ''
@@ -137,16 +130,6 @@ def file_open(fil):
     # file.close()
 
 
-if isDirectory:
-    filenames = next(walk(args.file), (None, None, []))[2]  # [] if no file
-    # print(filenames)
-    for every_file in filenames:
-        file_open(os.path.join(args.file, every_file))
-    # print('Date lines:', date_lines)
-    # print('Total dates:', len(date_lines))
-
-if isFile:
-    file_open(args.file)
 
 
 def find_all_indexes(input_str, search_str):
@@ -162,66 +145,67 @@ def find_all_indexes(input_str, search_str):
         index = i + 1
     return l1
 
-
+def exclude_unwanted():
 # case 1 (UNWANTED)
-if args.unwanted is not None:
+
     # print('case 1')
     for k, v in sorted(parsed_data.items()):
         # if v.lower().__contains__(args.unwanted):
-        if args.unwanted in v.lower():
+        if args.unwanted.lower in v.lower():
             parsed_data.pop(k)
 
+def find_by_date():
 # case 2 (DATE WITHOUT TEXT)
 # if args.date is not None and args.text is None:
-if args.date is not None:
+
     # print('case 2')
     try:
-        inputted_date_analizer = check_date_length(args.date)
-        if inputted_date_analizer[1] == 'date_ok':
+        inputted_date_analyzer = check_date_length(args.date)
+        if inputted_date_analyzer[1] == 'date_ok':
             # print('date_ok')
             for k, v in sorted(parsed_data.items()):
                 if args.text is not None:
-                    if (k.__format__('%Y-%m-%d %H:%M:%S') == inputted_date_analizer[0].__format__('%Y-%m-%d %H:%M:%S')
+                    if (k.__format__('%Y-%m-%d %H:%M:%S') == inputted_date_analyzer[0].__format__('%Y-%m-%d %H:%M:%S')
                             and args.text in v.lower()):
                         # and v.lower().__contains__(args.text)):
                         print(k, v)
                 elif args.text is None:
-                    if k.__format__('%Y-%m-%d %H:%M:%S') == inputted_date_analizer[0].__format__('%Y-%m-%d %H:%M:%S'):
+                    if k.__format__('%Y-%m-%d %H:%M:%S') == inputted_date_analyzer[0].__format__('%Y-%m-%d %H:%M:%S'):
                         print(k, v)
 
-        if inputted_date_analizer[1] == 'more':
+        if inputted_date_analyzer[1] == 'more':
             for k, v in sorted(parsed_data.items()):
                 if args.text is not None:
-                    if k > inputted_date_analizer[0] and args.text in v.lower():
+                    if k > inputted_date_analyzer[0] and args.text in v.lower():
                         # if k > check_res[0] and v.lower().__contains__(args.text):
                         print(k, v)
                 elif args.text is None:
-                    if k > inputted_date_analizer[0]:
+                    if k > inputted_date_analyzer[0]:
                         print(k, v)
                         # print('more then:')
                         # print(check_res[0])
-        if inputted_date_analizer[1] == 'less':
+        if inputted_date_analyzer[1] == 'less':
             # print('less')
             for k, v in sorted(parsed_data.items()):
                 if args.text is not None:
-                    if k < inputted_date_analizer[0] and args.text in v.lower():
+                    if k < inputted_date_analyzer[0] and args.text in v.lower():
                         # if k < check_res[0] and v.lower().__contains__(args.text):
                         print(k, v)
                 elif args.text is None:
-                    if k < inputted_date_analizer[0]:
+                    if k < inputted_date_analyzer[0]:
                         print(k, v)
                     # print('less then:')
                     # print(check_res[0])
-        if inputted_date_analizer[1] == 'range_d':
+        if inputted_date_analyzer[1] == 'range_d':
             if args.text is not None:
                 # print('range')
                 for k, v in sorted(parsed_data.items()):
                     # if check_res[0] < k < check_res[2] and v.lower().__contains__(args.text):
-                    if inputted_date_analizer[0] < k < inputted_date_analizer[2] and args.text in v.lower():
+                    if inputted_date_analyzer[0] < k < inputted_date_analyzer[2] and args.text in v.lower():
                         print(k, v)
             elif args.text is None:
                 for k, v in sorted(parsed_data.items()):
-                    if inputted_date_analizer[0] < k < inputted_date_analizer[2]:
+                    if inputted_date_analyzer[0] < k < inputted_date_analyzer[2]:
                         print(k, v)
     except ValueError:
         print('Ввести дату необходимо в формате: 31-12-2023-23-59-59')
@@ -230,14 +214,16 @@ if args.date is not None:
         # print('Не введен разделитель, разделитель должен быть один следующих: . , / - : ')
         print('Ввести дату необходимо cо временем, в формате: 31-12-2023-23-59-59')
 # case 3 (WITHOUT DATE, WITHOUT TEXT)
-elif args.date is None and args.text is None:
+
+def show_res_without_tex_without_date():
+
     # print('case 3')
     for k, v in sorted(parsed_data.items()):
         print(k, v)
 
+def find_by_text():
 # case 4 (WITH TEXT WITHOUT DATE)
-if args.text is not None and args.date is None:
-    # print('case 4')
+   # print('case 4')
     for k, v in sorted(parsed_data.items()):
         lines = v.splitlines()
         counter = 0
@@ -253,4 +239,66 @@ if args.text is not None and args.date is None:
                     if ind0 < 0:
                         ind0 = 0
                     print(k, line[ind0:ind1])
-                    time.sleep(1)
+                    # time.sleep(1)
+
+
+# parse_input()
+
+isDirectory = False
+parser = argparse.ArgumentParser()
+parser.add_argument("file", help="Path to file or directory with logs")
+parser.add_argument("-d", "--date", help="Date for search, format: 31-12-2022-23-59-59, "
+                                         "31-12-2022-23-59-59- - to find earlier that this date and time, "
+                                         "or 31-12-2022- - to find earlier that this day, "
+                                         "31-12-2022-23-59-59+ - to find later that this date and time, "
+                                         "or 31-12-2022+ - to find later that this start of this day, "
+                                         "or 31-12-2022 - to find exactly in this day, "
+                                         "30-12-2022-23-59-59-31-12-2022-23-59-59 - to find between these dates with "
+                                         "time"
+                                         "or 30-12-2022-31-12-2022 - to find between these dates")
+parser.add_argument("-t", "--text", help="Text for search")
+parser.add_argument("-n", "--unwanted", help="Text for except in results")
+parser.add_argument("--full", help="Full text of logs", action="store_true")
+args = parser.parse_args()
+
+print(args)
+print(args.file, args.date, args.text, args.unwanted, args.full)
+# if args.text = args.text.lower()
+# args.unwanted = args.unwanted.lower()
+
+fpath = args.file
+isFile = os.path.isfile(args.file)
+# print('The file present at the path is a regular file:', isFile)
+if not isFile:
+    isDirectory = os.path.isdir(fpath)
+    # print('The path is a directory:', isDirectory)
+    # if not isDirectory:
+    # print('Not a File and not a Dir')
+
+
+if isDirectory:
+    if args.text is not None:
+        args.full = True
+    filenames = next(walk(args.file), (None, None, []))[2]  # [] if no file
+    # print(filenames)
+    for every_file in filenames:
+        file_open(os.path.join(args.file, every_file))
+    # print('Date lines:', date_lines)
+    # print('Total dates:', len(date_lines))
+
+if isFile:
+    file_open(args.file)
+
+
+if args.date is not None:
+    find_by_date()
+
+if args.unwanted is not None:
+    exclude_unwanted()
+
+if args.text is not None and args.date is None:
+    args.text = args.text.lower()
+    find_by_text()
+
+elif args.date is None and args.text is None:
+    show_res_without_tex_without_date()
