@@ -22,7 +22,6 @@ import os
 import time
 from os import walk
 
-
 parsed_data = {}
 inputted_date_analyzer = []
 index_of_string_to_find = []
@@ -124,7 +123,7 @@ def exclude_unwanted():
 
 def find_by_date():
     try:
-        inputted_date= check_date_length(args.date)
+        inputted_date = check_date_length(args.date)
         if inputted_date[1] == 'date_ok':
             for k, v in sorted(parsed_data.items()):
                 if args.text is not None:
