@@ -121,7 +121,7 @@ def exclude_unwanted():
             parsed_data.pop(k)
 
 
-def find_by_date():
+def find_by_date_and_print():
     try:
         inputted_date = check_date_length(args.date)
         if inputted_date[1] == 'date_ok':
@@ -166,12 +166,12 @@ def find_by_date():
         print('Ввести дату необходимо cо временем, в формате: 31-12-2023-23-59-59')
 
 
-def show_res_without_tex_without_date():
+def print_res_without_tex_without_date():
     for k, v in sorted(parsed_data.items()):
         print(k, v)
 
 
-def find_by_text():
+def find_by_text_and_print():
     for k, v in sorted(parsed_data.items()):
         lines = v.splitlines()
         counter = 0
@@ -223,15 +223,15 @@ if isDirectory:
 if isFile:
     data_to_dict(args.file)
 
-if args.date is not None:
-    find_by_date()
-
 if args.unwanted is not None:
     exclude_unwanted()
 
-if args.text is not None and args.date is None:
-    args.text = args.text.lower()
-    find_by_text()
+if args.date is not None:
+    find_by_date_and_print()
 
-elif args.date is None and args.text is None:
-    show_res_without_tex_without_date()
+if args.date is None and args.text is not None:
+    args.text = args.text.lower()
+    find_by_text_and_print()
+
+if args.date is None and args.text is None:
+    print_res_without_tex_without_date()
